@@ -307,6 +307,7 @@ def calc_floris_approx_table(
     ws_array=np.arange(1.0, 25.01, 1.0),
     ti_array=np.arange(0.03, 0.1801, 0.03),
     save_turbine_inflow_conditions_to_df=False,
+    yaw_angles=None
     ):
     """This function calculates a large number of floris solutions for a rectangular grid
     of wind directions ('wd_array'), wind speeds ('ws_array'), and optionally turbulence
@@ -384,7 +385,11 @@ def calc_floris_approx_table(
             wind_speeds=ws_array,
             turbulence_intensity=turb_intensity,
         )
-        fi.calculate_wake()
+        if yaw_angles is not None:
+            fi.calculate_wake(yaw_angles)
+        else:
+            fi.calculate_wake()
+        #fi.calculate_wake()
         turbine_powers = fi.get_turbine_powers()
 
         # Create a dictionary to save solutions in

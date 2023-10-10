@@ -128,6 +128,7 @@ class bias_estimation():
         # Set columns 'ws' and 'pow_ref' for df_subset_cor
         df_cor_all = self.df_ws_mapping_func(df_cor_all)
         df_cor_all = self.df_pow_ref_mapping_func(df_cor_all)
+        df_cor_all['ti'] = 0.15 # Adding upon advice from Florian. TODO: Figure out why ti was missing.
         df_cor_all = df_cor_all.dropna(subset=['wd', 'ws', 'pow_ref'])
         df_cor_all = df_cor_all.reset_index(drop=True)
 

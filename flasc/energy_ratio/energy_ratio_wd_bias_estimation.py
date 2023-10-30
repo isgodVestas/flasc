@@ -115,8 +115,8 @@ class bias_estimation():
                 wind direction measurement, offset by 'wd_bias' compared
                 to the nominal dataset.
         """
-        print('  Constructing energy ratio suites for wd_bias of %.2f deg.'
-              % wd_bias)
+        #print('  Constructing energy ratio suites for wd_bias of %.2f deg.'
+        #      % wd_bias)
 
         fsc_list = []
         fsc_wd_bias_list = []
@@ -133,7 +133,7 @@ class bias_estimation():
         df_cor_all = df_cor_all.reset_index(drop=True)
 
         # Get FLORIS predictions
-        print('    Interpolating FLORIS predictions for dataframe.')
+        #print('    Interpolating FLORIS predictions for dataframe.')
         ws_cols = ["ws_{:03d}".format(ti) for ti in range(self.n_turbines)]
         pow_cols = ["pow_{:03d}".format(ti) for ti in range(self.n_turbines)]
         df_fi_all = df_cor_all[['time', 'wd', 'ws', 'ti', *ws_cols, *pow_cols]].copy()
@@ -220,7 +220,7 @@ class bias_estimation():
         energy_ratios_scada = [[] for _ in test_turbines]
         energy_ratios_floris = [[] for _ in test_turbines]
 
-        print("    Initializing energy ratio suites.")
+        #print("    Initializing energy ratio suites.")
         self._load_ersuites_for_wd_bias(
             wd_bias=wd_bias,
             test_turbines=test_turbines,
@@ -231,8 +231,8 @@ class bias_estimation():
         )
 
         for ii, ti in enumerate(test_turbines):
-            print('    Determining energy ratios for test turbine = %03d.'
-                  % (ti) + ' WD bias: %.3f deg.' % self.fsc_wd_bias_list[ii])
+            #print('    Determining energy ratios for test turbine = %03d.'
+            #      % (ti) + ' WD bias: %.3f deg.' % self.fsc_wd_bias_list[ii])
             fsc = self.fsc_list[ii]
             if fast == True:
                 fsc.get_energy_ratios_fast(

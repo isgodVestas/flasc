@@ -401,6 +401,7 @@ class energy_ratio:
         )
         self._calculate_bins()
 
+
         # Get probability distribution of bins
         self._get_df_freq()
 
